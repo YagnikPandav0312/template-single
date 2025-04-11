@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silent Quantum - Trusted By Millions</title>
+  <style>
+    :root {
+      --dark-bg: #1A3639;
+      --primary: #297C82;
+      --accent: #EDE3BE;
+      --offwhite: #FBF8EF;
+      --soft-gray: rgba(255, 255, 255, 0.08);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--dark-bg), var(--primary));
+      color: var(--offwhite);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .back-button {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 24px;
+      cursor: pointer;
+      opacity: 0.8;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: var(--accent);
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+      margin: 10px 0 30px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 60%;
+      background-color: var(--accent);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--offwhite);
+    }
+
+    .subtitle {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin: 30px 0 20px;
+    }
+
+    .seen-in {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .media-logos {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-bottom: 40px;
+      align-items: center;
+    }
+
+    .logo-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .media-logo svg text {
+      fill: var(--accent);
+    }
+
+    .continue-button {
+      background-color: var(--accent);
+      border: none;
+      border-radius: 30px;
+      padding: 18px 20px;
+      color: var(--dark-bg);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+      width: 100%;
+    }
+
+    .continue-button:hover {
+      transform: scale(1.02);
+      background-color: #f4e8c2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <button class="back-button">←</button>
+      <div class="logo">Logo Here</div>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+
+    <h1>More than 1,000,000</h1>
+    <div class="subtitle">users have already experienced the benefits of using Quantum frequency in their life.</div>
+
+    <div class="divider"></div>
+    <div class="seen-in">as seen in</div>
+
+    <div class="media-logos">
+      <div class="logo-row">
+        <div class="media-logo">
+          <svg width="140" height="30"><text x="0" y="20" font-family="serif" font-size="18">The New York Times</text></svg>
+        </div>
+      </div>
+      <div class="logo-row">
+        <div class="media-logo">
+          <svg width="180" height="30"><text x="0" y="20" font-family="serif" font-size="18">THE WALL STREET JOURNAL</text></svg>
+        </div>
+      </div>
+      <div class="logo-row">
+        <svg width="60" height="30"><text x="0" y="20" font-weight="bold" font-size="18">CNN</text></svg>
+        <svg width="110" height="30"><text x="0" y="20" font-size="18">Bloomberg</text></svg>
+        <svg width="80" height="30"><text x="0" y="20" font-family="serif" font-size="18">Forbes</text></svg>
+      </div>
+      <div class="logo-row">
+        <svg width="70" height="30"><text x="0" y="20" font-weight="bold" font-size="18">WIRED</text></svg>
+        <svg width="100" height="30"><text x="0" y="20" font-family="serif" font-size="18">FORTUNE</text></svg>
+      </div>
+      <div class="logo-row">
+        <svg width="180" height="30"><text x="0" y="20" font-family="serif" font-size="18">The Washington Post</text></svg>
+      </div>
+    </div>
+
+    <button class="continue-button">Continue</button>
+  </div>
+</body>
+</html>

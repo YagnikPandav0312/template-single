@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frequency Score Report</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --dark-bg: #1A3639;
+      --primary: #297C82;
+      --accent: #EDE3BE;
+      --text-light: #FBF8EF;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--dark-bg), var(--primary));
+      color: var(--text-light);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    h1, h2, h3 {
+      color: var(--accent);
+    }
+
+    .score-section, .protocol, .tips, .timeline, .cta-section {
+      margin-bottom: 30px;
+    }
+
+    .protocol h3 {
+      margin-top: 20px;
+      font-size: 18px;
+      color: var(--accent);
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .highlight {
+      background-color: rgba(255,255,255,0.1);
+      border-left: 4px solid var(--accent);
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+    }
+
+    .tips ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .tips li {
+      background: rgba(255,255,255,0.05);
+      padding: 10px 15px;
+      border-radius: 10px;
+    }
+
+    .carousel {
+      display: flex;
+      overflow: hidden;
+      justify-content: center;
+      margin: 20px 0;
+      height: 80px;
+    }
+
+    .carousel-card {
+      min-width: 100%;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      font-size: 16px;
+    }
+
+    .carousel-card.active {
+      opacity: 1;
+    }
+
+    .cta-section .cta-button {
+      display: inline-block;
+      margin-top: 20px;
+      background: var(--accent);
+      color: var(--dark-bg);
+      padding: 14px 24px;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    canvas {
+      background: #0f2628;
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .timer {
+      font-weight: bold;
+      color: var(--accent);
+      font-size: 18px;
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🦠 David’s Frequency Score Report</h1>
+    <div class="score-section">
+      <p><strong>Goal:</strong> Healing a Major Health Condition</p>
+      <p><strong>Score:</strong> 35/100</p>
+      <p class="badge">Status: ⚠️ Critical Imbalance – Urgent energetic reset needed</p>
+      <div class="highlight">
+        Your Frequency Score indicates a high level of energetic stress or blockage. This may stem from physical illness, emotional trauma, or long-term imbalance. The good news: your body is receptive to healing frequencies—and you're in the right place to begin transformation.
+      </div>
+    </div>
+
+    <div class="protocol">
+      <h2>🔧 Personalized 30-Day Frequency Plan</h2>
+      <p>Use these frequencies 2–3x daily to support your body’s natural healing systems. You can listen passively while resting, working, or sleeping.</p>
+
+      <h3>Morning Protocol – Activate + Detox</h3>
+      <ul>
+        <li>Cellular Regeneration (Quantum)</li>
+        <li>Lymphatic Cleanse & Detox Support (Rife)</li>
+        <li>Immune System Activation (Quantum)</li>
+      </ul>
+      <p><em>Best time: After waking up, while stretching, journaling, or during light activity.</em></p>
+
+      <h3>Afternoon Protocol – Relieve + Support</h3>
+      <ul>
+        <li>Inflammation Reduction (Rife)</li>
+        <li>Pain Relief + Nervous System Reset (Quantum)</li>
+        <li>Liver & Kidney Organ Support (Rife)</li>
+      </ul>
+      <p><em>Best time: After meals, or anytime pain or fatigue increases.</em></p>
+
+      <h3>Evening Protocol – Repair + Deep Heal</h3>
+      <ul>
+        <li>Stem Cell Activation + Tissue Repair (Quantum)</li>
+        <li>Full Body Regeneration Support (Rife)</li>
+        <li>Deep Rest and Healing Sleep (Quantum)</li>
+      </ul>
+      <p><em>Best time: 1 hour before bed or while falling asleep.</em></p>
+    </div>
+
+    <div class="tips">
+      <h2>🗘️ Tips for Best Results</h2>
+      <ul>
+        <li>🎧 Use headphones or a speaker near your body</li>
+        <li>💧 Stay well-hydrated—water amplifies frequency transmission</li>
+        <li>📓 Track your daily experience in a healing journal</li>
+        <li>⏱ More isn’t better—consistency is key</li>
+      </ul>
+    </div>
+
+    <div class="timeline">
+      <h2>📈 Projected Progress Timeline</h2>
+      <canvas id="progressChart" width="100%" height="60"></canvas>
+    </div>
+
+    <div class="cta-section">
+      <h2>🔓 Unlock Your Frequencies Now</h2>
+      <p>Access all listed Rife + Quantum frequencies above</p>
+      <ul>
+        <li>10,000+ wellness programs for health, energy, sleep, focus & more</li>
+        <li>World’s most powerful quantum frequencies</li>
+        <li>Personalized AI wellness coach for daily guidance</li>
+        <li>100% natural, non-invasive, and effortless</li>
+        <li>Works passively while you rest or go about your day</li>
+      </ul>
+
+      <div class="carousel">
+        <div class="carousel-card active">The energy system shifts faster when you use the right frequencies consistently.</div>
+        <div class="carousel-card">Your body is already responding—don't lose the momentum.</div>
+        <div class="carousel-card">91% of users report emotional or physical relief within the first week.</div>
+      </div>
+
+      <a class="cta-button" href="#">Subscribe & Begin Transformation ➔</a>
+      <p style="margin-top: 10px; font-size: 14px; color: var(--text-light);">
+        ➡️ Start today for just <strong>$29.99/month</strong><br>
+        ☑ Cancel anytime | ☑ Instant access | ☑ 30-day risk-free trial
+      </p>
+    </div>
+    <div class="timer">
+      Your personalized healing protocol is synchronized to your current energy state.<br>
+      To stay aligned and effective, this plan will expire in <span id="countdown">24:00:00</span>.
+    </div>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('progressChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Day 1', 'Day 7', 'Day 30'],
+        datasets: [{
+          label: 'Healing Progress',
+          data: [10, 45, 85],
+          fill: true,
+          borderColor: '#EDE3BE',
+          backgroundColor: 'rgba(237, 227, 190, 0.2)',
+          tension: 0.4
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: '#FBF8EF'
+            }
+          }
+        }
+      }
+    });
+
+    // Countdown timer
+    const countdownEl = document.getElementById("countdown");
+    let timeLeft = 24 * 60 * 60;
+    setInterval(() => {
+      const hours = String(Math.floor(timeLeft / 3600)).padStart(2, '0');
+      const minutes = String(Math.floor((timeLeft % 3600) / 60)).padStart(2, '0');
+      const seconds = String(timeLeft % 60).padStart(2, '0');
+      countdownEl.textContent = `${hours}:${minutes}:${seconds}`;
+      if (timeLeft > 0) timeLeft--;
+    }, 1000);
+
+    // Carousel
+    const cards = document.querySelectorAll('.carousel-card');
+    let activeIndex = 0;
+    setInterval(() => {
+      cards[activeIndex].classList.remove('active');
+      activeIndex = (activeIndex + 1) % cards.length;
+      cards[activeIndex].classList.add('active');
+    }, 3000);
+  </script>
+</body>
+</html>

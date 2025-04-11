@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silent Quantum - Age Selection</title>
+  <style>
+    :root {
+      --dark-bg: #1A3639;
+      --primary: #297C82;
+      --accent: #EDE3BE;
+      --offwhite: #FBF8EF;
+      --soft-gray: rgba(255, 255, 255, 0.08);
+      --hover-bg: rgba(255, 255, 255, 0.18);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--dark-bg), var(--primary));
+      color: var(--offwhite);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .back-button {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 24px;
+      cursor: pointer;
+      opacity: 0.8;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: var(--accent);
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+      margin: 10px 0 30px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 20%;
+      background-color: var(--accent);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: var(--offwhite);
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .button {
+      background-color: var(--soft-gray);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 18px 20px;
+      color: var(--offwhite);
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .button:hover {
+      background-color: var(--hover-bg);
+      transform: scale(1.02);
+    }
+
+    .continue-button {
+      background-color: var(--accent);
+      border: none;
+      border-radius: 30px;
+      padding: 18px 20px;
+      color: var(--dark-bg);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+      width: 100%;
+    }
+
+    .continue-button:hover {
+      transform: scale(1.02);
+      background-color: #f4e8c2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <button class="back-button">←</button>
+      <div class="logo">Logo Here</div>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+
+    <h1>How old are you?</h1>
+
+    <div class="button-container">
+      <button class="button">Under 18</button>
+      <button class="button">18–24</button>
+      <button class="button">25–34</button>
+      <button class="button">35–44</button>
+      <button class="button">45–54</button>
+      <button class="button">55–64</button>
+      <button class="button">65 and over</button>
+    </div>
+
+    <button class="continue-button">Continue</button>
+  </div>
+</body>
+</html>

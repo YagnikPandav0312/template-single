@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silent Quantum - Analyzing</title>
+  <style>
+    :root {
+      --dark-bg: #1A3639;
+      --primary: #297C82;
+      --accent: #EDE3BE;
+      --offwhite: #FBF8EF;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--dark-bg), var(--primary));
+      color: var(--offwhite);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 30px;
+    }
+
+    .progress-ring {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin-bottom: 30px;
+    }
+    .progress-ring circle {
+      fill: transparent;
+      stroke-width: 10;
+      stroke-linecap: round;
+    }
+    .progress-ring__background {
+      stroke: rgba(255,255,255,0.1);
+    }
+    .progress-ring__progress {
+      stroke: var(--accent);
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+    }
+    .progress-ring__text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .analyzing-text {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 16px;
+      min-height: 24px;
+    }
+
+    .review {
+      max-width: 300px;
+      background-color: rgba(255,255,255,0.05);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 30px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .review.visible {
+      opacity: 1;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #213e40;
+      padding: 24px;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .modal-content p {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    .yes { background: var(--accent); color: var(--dark-bg); }
+    .no { background: #666; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="logo">[Logo Here]</div>
+
+  <div class="progress-ring">
+    <svg width="140" height="140">
+      <circle class="progress-ring__background" cx="70" cy="70" r="60" />
+      <circle class="progress-ring__progress" cx="70" cy="70" r="60" stroke-dasharray="377" stroke-dashoffset="377" />
+    </svg>
+    <div class="progress-ring__text" id="progress-text">0%</div>
+  </div>
+
+  <div class="analyzing-text" id="analyzing-text">Analyzing your responses<span id="dots">.</span></div>
+
+  <div class="review" id="review-carousel">
+    <strong>⭐⭐⭐⭐⭐</strong><br/>
+    <div id="review-text">"Silent Quantum changed my life. The alignment is real."</div>
+    <div style="margin-top: 8px; font-weight: bold;" id="review-author">Ava, 34</div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <p>Would you like to boost your self-confidence?</p>
+      <button class="button no" onclick="closeModal()">No</button>
+      <button class="button yes" onclick="closeModal()">Yes</button>
+    </div>
+  </div>
+
+  <script>
+    const ring = document.querySelector('.progress-ring__progress');
+    const text = document.getElementById('progress-text');
+    const analyzingEl = document.getElementById('analyzing-text');
+    const dotsEl = document.getElementById('dots');
+    const reviewTextEl = document.getElementById('review-text');
+    const reviewAuthorEl = document.getElementById('review-author');
+    const reviewBox = document.getElementById('review-carousel');
+    const modal = document.getElementById('modal');
+
+    const analyzingMessages = [
+      "Analyzing your responses",
+      "Thinking about your goals",
+      "Understanding your needs",
+      "Adjusting to your level"
+    ];
+
+    const reviews = [
+      { text: "Silent Quantum changed my life. The alignment is real.", author: "Ava, 34" },
+      { text: "Incredible clarity and peace of mind after just a few sessions.", author: "Liam, 41" },
+      { text: "It's like having a personalized energetic mirror.", author: "Sofia, 29" }
+    ];
+
+    let progress = 0, msgIndex = 0, reviewIndex = 0;
+    let messageInterval, dotsInterval;
+
+    function updateProgress() {
+      const percent = progress;
+      const offset = 377 - (377 * percent / 100);
+      ring.style.strokeDashoffset = offset;
+      text.textContent = `${percent}%`;
+
+      if (percent % 25 === 0 && percent / 25 < analyzingMessages.length) {
+        analyzingEl.firstChild.textContent = analyzingMessages[percent / 25];
+      }
+
+      if (percent >= 100) {
+        clearInterval(progressInterval);
+        clearInterval(messageInterval);
+        clearInterval(dotsInterval);
+        setTimeout(() => modal.style.display = 'flex', 500);
+      } else {
+        progress++;
+      }
+    }
+
+    function animateDots() {
+      let dots = 1;
+      dotsInterval = setInterval(() => {
+        dots = (dots % 3) + 1;
+        dotsEl.textContent = '.'.repeat(dots);
+      }, 500);
+    }
+
+    function cycleReviews() {
+      const current = reviews[reviewIndex];
+      reviewBox.classList.remove('visible');
+      setTimeout(() => {
+        reviewTextEl.textContent = `"${current.text}"`;
+        reviewAuthorEl.textContent = current.author;
+        reviewBox.classList.add('visible');
+      }, 300);
+      reviewIndex = (reviewIndex + 1) % reviews.length;
+    }
+
+    const progressInterval = setInterval(updateProgress, 100);
+    messageInterval = setInterval(() => msgIndex = (msgIndex + 1) % analyzingMessages.length, 2000);
+    setInterval(cycleReviews, 2000);
+    animateDots();
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
